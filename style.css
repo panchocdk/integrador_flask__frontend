@@ -105,7 +105,9 @@ header {
 }
 
 .wrapper.active {
-    height: 520px;
+    top: 80px;
+    height: 720px;
+    
 }
 
 .wrapper .form-box {
@@ -127,11 +129,14 @@ header {
     position: absolute;
     transition: none;
     transform: translateX(400px);
+    
+    
 }
 
 .wrapper.active .form-box.register {
     transition: transform .18s ease;
     transform: translateX(0);
+    /* transform: scaleY(0.6); */
 }
 
 .wrapper .icon-close {
