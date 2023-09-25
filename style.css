@@ -105,7 +105,8 @@ header {
 }
 
 .wrapper.active {
-    height: 520px;
+    height: 480px;
+    
 }
 
 .wrapper .form-box {
@@ -127,11 +128,14 @@ header {
     position: absolute;
     transition: none;
     transform: translateX(400px);
+    
+    
 }
 
 .wrapper.active .form-box.register {
     transition: transform .18s ease;
     transform: translateX(0);
+    transform: scaleY(0.6);
 }
 
 .wrapper .icon-close {
@@ -180,6 +184,14 @@ header {
 .input-box input:focus~label,
 .input-box input:valid~label {
     top: -5px;
+}
+.input-box input.movable-label ~ label {
+    top: -5px; 
+}
+
+.input-box input.movable-label:valid ~ label {
+    top: -15px; 
+    
 }
 
 .input-box input {
