@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Chat</title>
+    <link rel="stylesheet" href="discord.css">
+</head>
+<body>
+
+    <header>
+        <h2 class="logo">Discord Chat</h2>
+        <nav class="navigation">
+            <button class="btnLogout" id="logout">Logout</button>
+        </nav>
+    </header>
+
+    <div class="wrapper add">
+        <div class="form-box serverAdd">
+            <h2>Unirse a un servidor</h2>
+            <span class="message1" id="message1"></span>
+            <div class="botonera">
+                <button type="button" id="accept" class="btn">Aceptar</button>
+                <button type="button" class="btn csa">Cancelar</button>
+            </div>
+            <div id="message"></div>
+        </div>
+    </div>
+
+    <div class="wrapper create">
+        <div class="form-box serverCreate" >
+            <h2>Crear un servidor</h2>
+            <form action="#" id="serverForm">
+                <div class="input-box">
+                    <span class="servIcon"><ion-icon name="server"></ion-icon></span>
+                    <input type="text" id="server_name" required>
+                    <label>Nombre del nuevo servidor</label>
+                </div>
+                <div class="input-box">
+                    <span class="servIcon"><ion-icon name="document-text"></ion-icon></span>
+                    <input type="text" id="description" required>
+                    <label>Descripcion</label>
+                </div>
+                <div class="botonera">
+                    <button type="submit" class="btn">Confirmar</button>
+                    <button type="button" class="btn csc">Cancelar</button>
+                </div>
+            </form>
+            <div id="message"></div>
+        </div>
+    </div>
+
+    <section>
+        <div class="container servers">
+            <div class="sxu">
+                <img class="icon" id="add" src="icons\add server.png" alt="" title="Añadir un servidor">
+                <img class="icon" id="explorer" src="icons\explore servers.png" alt="" title="Explorar servidores">
+            </div>
+            <div class="sxu" id="sxu"></div>
+            <div class="user">
+                <img class="avatar" src="" id="avatar" alt="Foto de perfil">
+                <span class="username" id="name"></span>
+                <div id="message" ></div>
+            </div>
+        </div>
+        <div class="container channels"><p>texto de prueba</p></div>
+        <div class="container chats">
+            <div class="overlay" id="general"></div>
+            <div class="overlay" id="explore"></div>
+            <div class="overlay" id="chat"></div>
+        </div>
+    </section>
+
+
+    <script src="discord.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
