@@ -43,7 +43,7 @@ function login() {
         if (response.status === 200) {
             // Redirect to profile page if login is successful
             return response.json().then(data => {
-                window.location.href = "pagina2.html";
+                window.location.href = "discord.html";
             });
         } else {
             return response.json().then(data => {

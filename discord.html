@@ -32,7 +32,7 @@
             <h2>Crear un servidor</h2>
             <form action="#" id="serverForm">
                 <div class="input-box">
-                    <span class="servIcon"><ion-icon name="server"></ion-icon></span>
+                    <span class="servIcon"><ion-icon name="chatbubbles"></ion-icon></ion-icon></span>
                     <input type="text" id="server_name" required>
                     <label>Nombre del nuevo servidor</label>
                 </div>
@@ -50,11 +50,35 @@
         </div>
     </div>
 
+    <div class="wrapper addChannel">
+        <div class="form-box channelCreate" >
+            <h2>Crear un nuevo canal</h2>
+            <form action="#" id="channelForm">
+                <div class="input-box">
+                    <span class="servIcon"><ion-icon name="chatbubbles"></ion-icon></span>
+                    <input type="text" id="channel_name" required>
+                    <label>Nombre del nuevo canal</label>
+                </div>
+                <div class="input-box">
+                    <span class="servIcon"><ion-icon name="document-text"></ion-icon></span>
+                    <input type="text" id="description" required>
+                    <label>Descripcion</label>
+                </div>
+                <div class="botonera">
+                    <button type="submit" class="btn">Confirmar</button>
+                    <button type="button" class="btn cca">Cancelar</button>
+                </div>
+            </form>
+            <div id="message"></div>
+        </div>
+    </div>
+
     <section>
+
         <div class="container servers">
-            <div class="sxu">
-                <img class="icon" id="add" src="icons\add server.png" alt="" title="Añadir un servidor">
-                <img class="icon" id="explorer" src="icons\explore servers.png" alt="" title="Explorar servidores">
+            <div class="fixed">
+                <img class="sicon" id="add" src="icons\add server.png" alt="" title="Añadir un servidor">
+                <img class="sicon" id="explorer" src="icons\explore servers.png" alt="" title="Explorar servidores">
             </div>
             <div class="sxu" id="sxu"></div>
             <div class="user">
@@ -63,12 +87,21 @@
                 <div id="message" ></div>
             </div>
         </div>
-        <div class="container channels"><p>texto de prueba</p></div>
+
+        <div class="container channels" id="channels"></div>
+        
         <div class="container chats">
             <div class="overlay" id="general"></div>
-            <div class="overlay" id="explore"></div>
+            <div class="overlay" id="explore">
+                <div class="searcher" id="searcher">
+                    <label>Buscador</label>
+                    <input type="search" class="search" id="search">
+                </div>
+                <div class="explor" id="explor"></div>
+            </div>
             <div class="overlay" id="chat"></div>
         </div>
+
     </section>
 
 
