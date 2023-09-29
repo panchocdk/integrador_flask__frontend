@@ -260,4 +260,17 @@ header {
 .welcome {
     position: absolute;
     z-index: -1;
+    margin: 60px;
+}
+
+.welcome h1 {
+    color: #fff;
+    font-size: 5em;
+    font-weight: 600;
+}
+
+.welcome p {
+    font-size: 1.5em;
+    color: black;
+    font-weight: 600;
 }
