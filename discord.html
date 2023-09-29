@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Chat</title>
+    <link rel="stylesheet" href="discord.css">
+</head>
+<body>
+
+    <header>
+        <h2 class="logo">Discord Chat</h2>
+        <nav class="navigation">
+            <button class="btnLogout" id="logout">Logout</button>
+        </nav>
+    </header>
+
+    <div class="wrapper add">
+        <div class="form-box serverAdd">
+            <h2>Unirse a un servidor</h2>
+            <span class="message1" id="message1"></span>
+            <div class="botonera">
+                <button type="button" id="accept" class="btn">Aceptar</button>
+                <button type="button" class="btn csa">Cancelar</button>
+            </div>
+            <div id="message"></div>
+        </div>
+    </div>
+
+    <div class="wrapper create">
+        <div class="form-box serverCreate" >
+            <h2>Crear un servidor</h2>
+            <form action="#" id="serverForm">
+                <div class="input-box">
+                    <span class="servIcon"><ion-icon name="chatbubbles"></ion-icon></ion-icon></span>
+                    <input type="text" id="server_name" required>
+                    <label>Nombre del nuevo servidor</label>
+                </div>
+                <div class="input-box">
+                    <span class="servIcon"><ion-icon name="document-text"></ion-icon></span>
+                    <input type="text" id="description" required>
+                    <label>Descripcion</label>
+                </div>
+                <div class="botonera">
+                    <button type="submit" class="btn">Confirmar</button>
+                    <button type="button" class="btn csc">Cancelar</button>
+                </div>
+            </form>
+            <div id="message"></div>
+        </div>
+    </div>
+
+    <div class="wrapper addChannel">
+        <div class="form-box channelCreate" >
+            <h2>Crear un nuevo canal</h2>
+            <form action="#" id="channelForm">
+                <div class="input-box">
+                    <span class="servIcon"><ion-icon name="chatbubbles"></ion-icon></span>
+                    <input type="text" id="channel_name" required>
+                    <label>Nombre del nuevo canal</label>
+                </div>
+                <div class="input-box">
+                    <span class="servIcon"><ion-icon name="document-text"></ion-icon></span>
+                    <input type="text" id="description" required>
+                    <label>Descripcion</label>
+                </div>
+                <div class="botonera">
+                    <button type="submit" class="btn">Confirmar</button>
+                    <button type="button" class="btn cca">Cancelar</button>
+                </div>
+            </form>
+            <div id="message"></div>
+        </div>
+    </div>
+
+    <div class="wrapper profile">
+        <div class="form-box userProfile">
+            <div>
+                <h2 id="nameProfile">Usuario</h2>
+                <img class="imgProfile" src="" id="imgProfile" alt="">
+            </div>
+            <span class="usProfile" id="usProfile1"></span>
+            <span class="usProfile" id="usProfile2"></span>
+            <span class="usProfile" id="usProfile3"></span>
+            <span class="usProfile" id="usProfile4"></span>
+            <div class="botonera">
+                <button type="button" id="edit" class="btn">Editar</button>
+                <button type="button" class="btn cup">Aceptar</button>
+            </div>
+            <div id="message"></div>
+        </div>
+    </div>
+
+    <div class="wrapper editProfile">
+        <div class="form-box edit">
+            <h2>Editar Perfil</h2>
+            <form action="#" id="editForm">
+                <div class="input-box">
+                    <span class="servIcon"><ion-icon name="person"></ion-icon></span>
+                    <input type="text" id="r_username">
+                    <label>Username</label>
+                </div>
+                <div class="input-box">
+                    <span class="servIcon"><ion-icon name="mail"></ion-icon></span>
+                    <input type="email" id="r_email">
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="servIcon"><ion-icon name="person"></ion-icon></span>
+                    <input type="text" id="r_first_name">
+                    <label>Nombre</label>
+                </div>
+                <div class="input-box">
+                    <span class="servIcon"><ion-icon name="person"></ion-icon></span>
+                    <input type="text" id="r_last_name">
+                    <label>Apellido</label>
+                </div>
+                <div class="input-box">
+                    <span class="servIcon"><ion-icon name="calendar"></ion-icon></span>
+                    <input type="text" id="r_date_of_birth" onfocus="(this.type='date')">
+                    <label>Fecha de Nacimiento</label>
+                </div>
+                <button type="submit" class="btn">Registrar</button>
+                <button type="button" class="btn cep">Cancelar</button>
+            </form>
+            <div id="r_message"></div>
+        </div>
+    </div>
+
+    <section>
+
+        <div class="container servers">
+            <div class="fixed">
+                <img class="sicon" id="add" src="icons\add server.png" alt="" title="Añadir un servidor">
+                <img class="sicon" id="explorer" src="icons\explore servers.png" alt="" title="Explorar servidores">
+            </div>
+            <div class="sxu" id="sxu"></div>
+            <div class="user">
+                <img class="avatar" src="" id="avatar" alt="Foto de perfil">
+                <span class="username" id="name"></span>
+                <div id="message" ></div>
+            </div>
+        </div>
+
+        <div class="container channels" id="channels"></div>
+        
+        <div class="container chats">
+            <div class="overlay" id="general"></div>
+            <div class="overlay" id="explore">
+                <div class="searcher" id="searcher">
+                    <label>Buscador</label>
+                    <input type="search" class="search" id="search">
+                </div>
+                <div class="explor" id="explor"></div>
+            </div>
+            <div class="overlay" id="chat">
+                <div class="area">
+                    <div class="messageArea" id="messageArea"></div>
+                    <div class="textArea">
+                        <input type="text" id="messageInput" placeholder="Escriba un mensaje...">
+                        <button class="btn" id="send">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+    <script src="discord.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
