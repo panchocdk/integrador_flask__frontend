@@ -399,8 +399,10 @@ section {
 
 .overlay.active {
     width: 100%;
+    height: 90%;
     display: flex;
     flex-direction: column;
+    padding: 10px;
 }
 
 .message {
@@ -424,4 +426,70 @@ section {
 .explor {
     display: flex;
     flex-direction: row;
+}
+
+.area {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.messageArea {
+    position: absolute;
+    width: 88%;
+    height: 76%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.textArea {
+    position: fixed;
+    width: 95%;
+    display: flex;
+    bottom: 25px;
+}
+
+#messageInput {
+    width: 70%;
+    height: 45px;
+    border-radius: 6px;
+    font-weight: 500;
+    margin: 10px;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    padding: 10px;
+    color: #162938;
+}
+
+.containerChat {
+    background-color: rgba(255, 255, 255, .5);
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(30px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 5px;
+}
+
+.chatmessage {
+    color: #162938;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.usernameChat {
+    font-size: .9em;
+    color: #162938;
+    font-weight: 500;
+}
+
+.profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
