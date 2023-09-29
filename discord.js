@@ -11,6 +11,10 @@ document.getElementById("explorer").addEventListener("click", function () {
     getServers();
 })
 
+let usName = '';
+let usImg = '';
+let usID = '';
+
 function getProfile() {
     fetch("http://127.0.0.1:5000/user/profile", {
         method: 'GET',
@@ -20,7 +24,10 @@ function getProfile() {
         if (response.status === 200) {
             return response.json().then(data => {
                 document.getElementById("name").innerText = data.user_name;
+                usName = data.user_name;
                 document.getElementById("avatar").src = data.profile_image;
+                usImg = data.profile_image;
+                usID = data.user_id;
 
             })
         } else {
@@ -406,6 +413,7 @@ document.addEventListener('click', function(event) {
                             aElement.id = channel.channel_name;
                             aElement.addEventListener('click', function(event) {
                                 event.preventDefault();
+                                activeChat(channel.channel_name);
                             })
                             document.getElementById("navigater").appendChild(aElement);
                         }
@@ -471,6 +479,7 @@ function registerChannel(servername, element) {
             aCElement.id = data.channel_name;
             aCElement.addEventListener('click', function(event) {
                 event.preventDefault();
+                activeChat(channel.channel_name);
             })
             element.appendChild(aCElement);
         } else {
@@ -484,4 +493,147 @@ function registerChannel(servername, element) {
         console.log("An error occurred." + error);
         document.getElementById("message").innerHTML = "An error occurred." + error;
     });
+}
+
+let channelName = '';
+
+function activeChat(channel) {
+    document.getElementById("chat").classList.add('active');
+    document.getElementById("explore").classList.remove('active');
+    document.getElementById("general").classList.remove('active');
+    channelName = channel;
+    const msgArea = document.getElementById("messageArea");
+    while (msgArea.firstChild) {
+        msgArea.removeChild(msgArea.firstChild);
+    }
+    fetch(`http://127.0.0.1:5000/chat/all/${channel}`, {
+        method: 'GET',
+        credentials: 'include'
+    })
+    .then(response => {
+        if (response.status === 200) {
+            return response.json().then(data8 => {
+                if (data8.length > 0) {
+                    for (messageChat of data8) {
+                        const divElement = document.createElement('div');
+                        divElement.classList.add('containerChat');
+                        const div2Element = document.createElement('div');
+                        div2Element.classList.add('profile');
+                        console.log(messageChat.user_id)
+                        getChatProfile(messageChat.user_id, messageChat.chat_date, div2Element)
+                        const div3Element = document.createElement('div');
+                        div3Element.classList.add('chatmessage');
+                        div3Element.textContent = messageChat.message;
+                        /* aqui deberia controlar los mensajes del usuario para permitir edicion */
+                        
+                        divElement.appendChild(div2Element);
+                        divElement.appendChild(div3Element);
+                        document.getElementById("messageArea").appendChild(divElement);
+                    }
+                } else {
+                    const ch = document.getElementById("messageArea");
+                    while (ch.firstChild) {
+                        ch.removeChild(ch.firstChild);
+                    }
+                    const spElement = document.createElement('span');
+                    spElement.classList.add('message');
+                    spElement.textContent = 'Aun no hay mensajes en este canal';
+                    document.getElementById("messageArea").appendChild(spElement);
+                }
+            })
+        }
+    })
+    .catch(error => {
+        console.log("An error occurred." + error);
+    })
+}
+
+document.getElementById("send").addEventListener('click', () => {
+    const userMessage = document.getElementById("messageInput").value;
+    if (userMessage.trim() !== '') {
+        const data9 = {
+            channel_name: channelName,
+            message: userMessage,
+        }
+        fetch("http://127.0.0.1:5000/chat/create", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data9),
+            credentials: 'include'
+        })
+        .then(response => {
+            if (response.status === 201) {
+                const divElement = document.createElement('div');
+                divElement.classList.add('containerChat');
+                const div2Element = document.createElement('div');
+                div2Element.classList.add('profile');
+                const usDivElement = document.createElement('div');
+                usDivElement.classList.add('user')
+                const uIElement = document.createElement('img');
+                uIElement.classList.add('avatar');
+                uIElement.src = usImg;
+                const uSElement = document.createElement('span');
+                uSElement.classList.add('usernameChat');
+                uSElement.textContent = usName;
+                const spanElement = document.createElement('span');
+                spanElement.classList.add('date');
+                const now = new Date();
+                const date = now.toLocaleDateString();
+                const hour = now.toLocaleTimeString();
+                spanElement.textContent = date + ' ' + hour;
+                const div3Element = document.createElement('div');
+                div3Element.classList.add('chatmessage');
+                div3Element.textContent = data9.message;
+                /* aqui deberia controlar los mensajes del usuario para permitir edicion */
+                usDivElement.appendChild(uIElement);
+                usDivElement.appendChild(uSElement);
+                div2Element.appendChild(usDivElement);
+                div2Element.appendChild(spanElement);
+                divElement.appendChild(div2Element);
+                divElement.appendChild(div3Element);
+                document.getElementById("messageArea").appendChild(divElement);
+                document.getElementById("messageInput").value = "";
+            } else {
+                return response.json().then(data9 => {
+                    console.log(data9.message);
+                });
+            }
+        })
+        .catch(error => {
+            console.log("An error occurred." + error);
+        })
+    }
+})
+
+function getChatProfile(id, date, element) {
+    const uId = {
+        user_id: id,
+    }
+    fetch(`http://127.0.0.1:5000/user/${id}`, {
+        method: 'GET',
+        credentials: 'include'
+    })
+    .then(response => {
+        if (response.status === 200) {
+            return response.json().then(data => {
+                const usDivElement = document.createElement('div');
+                usDivElement.classList.add('user')
+                const uIElement = document.createElement('img');
+                uIElement.classList.add('avatar');
+                uIElement.src = data.profile_image;
+                const uSElement = document.createElement('span');
+                uSElement.classList.add('usernameChat');
+                uSElement.textContent = data.user_name;
+                const spanElement = document.createElement('span');
+                spanElement.classList.add('date');
+                spanElement.textContent = messageChat.chat_date;
+                usDivElement.appendChild(uIElement);
+                usDivElement.appendChild(uSElement);
+                element.appendChild(usDivElement);
+                element.appendChild(spanElement);
+            })
+        }
+    })
 }
