@@ -637,3 +637,58 @@ function getChatProfile(id, date, element) {
         }
     })
 }
+
+const wrapperProfile = document.querySelector('.wrapper.profile');
+const btnCancelProfile = document.querySelector('.btn.cup');
+                    
+btnCancelProfile.addEventListener('click', () => {
+    wrapperProfile.classList.remove('active');
+})
+
+document.getElementById("avatar").addEventListener('click', () => {
+    wrapperProfile.classList.add('active');
+    getUserData();
+})
+
+function getUserData() {
+    fetch("http://127.0.0.1:5000/user/profile", {
+        method: 'GET',
+        credentials: 'include'
+    })
+    .then(response => {
+        if (response.status === 200) {
+            return response.json().then(data => {
+                document.getElementById("nameProfile").innerText = data.user_name;
+                document.getElementById("imgProfile").src = data.profile_image;
+                document.getElementById("usProfile1").innerText = 'Email: '+data.email;
+                document.getElementById("usProfile2").innerText = 'Nombre: '+data.first_name;
+                document.getElementById("usProfile3").innerText = 'Apellido: '+data.last_name;
+                document.getElementById("usProfile4").innerText = 'Fecha de Nac: '+data.date_of_birth.slice(5,16);
+            })
+        } else {
+            return response.json().then(data => {
+                document.getElementById("message").innerHTML = data.message;
+            });
+        }
+    })
+    .catch(error => {
+        document.getElementById("message").innerHTML = "An error occurred.";
+    })
+}
+
+const wrappereditProfile = document.querySelector('.wrapper.editProfile');
+const btnCancelEditProfile = document.querySelector('.btn.cep');
+                    
+btnCancelEditProfile.addEventListener('click', () => {
+    wrappereditProfile.classList.remove('active');
+    wrapperProfile.classList.add('active');
+})
+
+document.getElementById("edit").addEventListener('click', () => {
+    wrappereditProfile.classList.add('active');
+    wrapperProfile.classList.remove('active');
+})
+
+document.getElementById("editForm"),addEventListener("submit", function (event) {
+    event.preventDefault();
+});

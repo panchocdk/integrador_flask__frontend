@@ -98,6 +98,24 @@ header {
     transform: scale(1);
 }
 
+.wrapper.profile {
+    width: 480px;
+    height: 600px;
+}
+
+.wrapper.profile.active {
+    transform: scale(1);
+}
+
+.wrapper.editProfile {
+    width: 400px;
+    height: 600px;
+}
+
+.wrapper.editProfile.active {
+    transform: scale(1);
+}
+
 .wrapper .form-box {
     width: 100%;
     padding: 40px;
@@ -291,6 +309,7 @@ section {
     border-radius: 50%;
     border: 1px solid #162938;
     margin-right: 5%;
+    cursor: pointer;
 }
 
 .username {
@@ -488,8 +507,27 @@ section {
     font-weight: 500;
 }
 
+.userProfile {
+    background-color: rgba(255, 255, 255, .2);
+}
+
 .profile {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.imgProfile {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 1px solid #162938;
+    margin-bottom: 20px;
+}
+
+.usProfile {
+    font-size: 1.2em;
+    color: #162938;
+    font-weight: 600;
+    margin: 10px;
 }
